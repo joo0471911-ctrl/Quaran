@@ -349,21 +349,22 @@
     }
 
 
-    /* Synchronized Live Audio Teleprompter Stage (Arabic + Pronunciation + Translation together) */
+    /* Synchronized Live Audio Teleprompter Stage (Enlarged: Arabic + Pronunciation + Translation together) */
     .live-sync-stage {
-      margin: 8px 12px 12px;
+      margin: 10px 10px 14px;
       background-color: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-top: 3px solid var(--accent-green);
-      border-radius: 14px;
-      padding: 12px 14px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid var(--border-subtle);
+      border-top: 3.5px solid var(--accent-green);
+      border-radius: 16px;
+      padding: 16px 16px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
       transition: transform 0.28s ease, border-color 0.25s ease;
+      cursor: pointer;
     }
 
     .live-sync-stage.is-speaking {
       border-color: var(--accent-green);
-      box-shadow: 0 6px 22px rgba(34, 197, 94, 0.14);
+      box-shadow: 0 8px 26px rgba(34, 197, 94, 0.18);
     }
 
     .sync-stage-header {
@@ -371,10 +372,10 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 10px;
-      padding-bottom: 6px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
       border-bottom: 1px solid var(--border-subtle);
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .sync-stage-title {
@@ -386,8 +387,8 @@
     }
 
     .sync-live-dot {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--text-muted);
       display: inline-block;
@@ -405,53 +406,53 @@
     }
 
     .sync-track-window {
-      max-height: 220px;
+      max-height: 320px;
       overflow-y: auto;
       scroll-behavior: smooth;
-      padding-right: 2px;
+      padding-right: 3px;
     }
 
     .sync-words-flow {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 6px 8px;
+      gap: 8px 10px;
       direction: rtl;
-      padding: 4px 2px 10px;
+      padding: 6px 4px 12px;
     }
 
     .sync-word-chip {
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      padding: 4px 7px;
-      border-radius: 9px;
-      border: 1px solid transparent;
-      background: rgba(255, 255, 255, 0.02);
+      padding: 6px 9px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
       transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
     }
 
     .sync-word-ar {
       font-family: var(--arabic-font);
-      font-size: calc(var(--arabic-size) * 0.62);
-      line-height: 1.65;
+      font-size: calc(var(--arabic-size) * 0.72);
+      line-height: 1.72;
       color: var(--text-primary);
     }
 
     .sync-word-bn {
       direction: ltr;
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 12px;
-      line-height: 1.25;
-      color: var(--text-muted);
-      margin-top: 2px;
-      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.3;
+      color: var(--text-secondary);
+      margin-top: 3px;
+      font-weight: 700;
     }
 
     .sync-word-chip.active-word {
       background: var(--accent-green-dim);
       border-color: var(--accent-green);
-      transform: translateY(-3px) scale(1.04);
+      transform: translateY(-3px) scale(1.05);
     }
 
     .sync-word-chip.active-word .sync-word-ar {
@@ -465,29 +466,29 @@
     }
 
     .sync-pron-line {
-      margin-top: 8px;
-      padding: 9px 11px;
-      border-radius: 9px;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 11px;
       background-color: var(--bg-band);
       border: 1px solid var(--border-subtle);
-      font-size: calc(var(--bangla-size) - 1px);
-      line-height: 1.6;
+      font-size: calc(var(--bangla-size) + 1px);
+      line-height: 1.7;
       color: var(--text-secondary);
       text-align: center;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .sync-meaning-line {
-      margin-top: 8px;
-      padding: 10px 12px;
-      border-radius: 9px;
+      margin-top: 10px;
+      padding: 13px 15px;
+      border-radius: 11px;
       background-color: var(--bg-secondary);
-      border-left: 3.5px solid var(--accent-gold);
-      font-size: var(--bangla-size);
-      line-height: 1.7;
+      border-left: 4px solid var(--accent-gold);
+      font-size: calc(var(--bangla-size) + 2px);
+      line-height: 1.78;
       color: var(--text-primary);
       text-align: center;
-      font-weight: 600;
+      font-weight: 700;
     }
 
               লাইভ সিঙ্ক: আরবি + উচ্চারণ + অর্থ
@@ -1390,6 +1391,102 @@
       display: none !important;
     }
 
+  
+    /* Dedicated Fullscreen Modal for Live Sync Stage (Double-tap/click on Live Sync Stage) */
+    .sync-fullscreen-modal {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background-color: var(--bg-primary);
+      z-index: 135;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 12px 12px;
+      overflow: hidden;
+    }
+
+    .sync-fullscreen-modal.open {
+      display: flex;
+      animation: fsFadeIn 0.2s ease;
+    }
+
+    .sync-fs-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .sync-fs-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-green);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sync-fs-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      margin: 10px 0;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent-green);
+      border-radius: 16px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .sync-fullscreen-modal .sync-track-window {
+      max-height: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .sync-fullscreen-modal .sync-word-ar {
+      font-size: calc(var(--arabic-size) * 0.88);
+    }
+
+    .sync-fullscreen-modal .sync-word-bn {
+      font-size: 16px;
+    }
+
+    .sync-fullscreen-modal .sync-pron-line {
+      font-size: calc(var(--bangla-size) + 3px);
+      padding: 14px 16px;
+    }
+
+    .sync-fullscreen-modal .sync-meaning-line {
+      font-size: calc(var(--bangla-size) + 4px);
+      padding: 16px 18px;
+    }
+
+    .sync-fs-bottombar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
   </style>
 </head>
 <body>
@@ -1577,6 +1674,28 @@
       <button class="fs-toggle-bars-btn" id="fsShowBarsBtn" title="উপর ও নিচের বার আবার দেখুন">
         ☰ মেনু দেখান
       </button>
+    </div>
+
+
+    <!-- Dedicated Fullscreen Modal for Live Sync Stage (Double-tap/click on #liveSyncStage) -->
+    <div class="sync-fullscreen-modal" id="syncFullscreenModal" role="dialog" aria-modal="true" aria-label="লাইভ সিঙ্ক ফুল স্ক্রিন">
+      <div class="sync-fs-topbar">
+        <div class="sync-fs-title" id="syncFsSurahInfo">লাইভ সিঙ্ক • সূরাঃ আল-ফাতিহা • আয়াতঃ ১</div>
+        <div style="display:flex; align-items:center; gap:5px; flex-shrink:0;">
+          <button class="fs-size-btn" id="syncFsAudioBtn" title="অডিও প্লে/পজ">▶ প্লে</button>
+          <button class="fs-size-btn" id="syncFsFontDownBtn" title="লেখা ছোট করুন">A-</button>
+          <button class="fs-size-btn" id="syncFsFontUpBtn" title="লেখা বড় করুন">A+</button>
+          <button class="fs-close-btn" id="syncFsCloseBtn">✕ বন্ধ</button>
+        </div>
+      </div>
+
+      <div class="sync-fs-body" id="syncFsBody"></div>
+
+      <div class="sync-fs-bottombar">
+        <button class="nav-step-btn" id="syncFsPrevBtn">← পূর্ববর্তী</button>
+        <div class="swipe-hint" id="syncFsPageLabel">১ / ৭</div>
+        <button class="nav-step-btn" id="syncFsNextBtn">পরবর্তী →</button>
+      </div>
     </div>
 
     <!-- Backdrop -->

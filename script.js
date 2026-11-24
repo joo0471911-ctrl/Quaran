@@ -1198,6 +1198,7 @@
         `সূরাঃ ${surahMeta.bn} • আয়াতঃ ${toBnNum(state.ayah)}`;
       document.getElementById("fsPageLabel").textContent =
         `${toBnNum(state.ayah)} / ${toBnNum(surahMeta.ayahs)} • স্লাইড করুন`;
+      if (isSyncFullscreenOpen) syncFullscreenLabels();
 
       const isFirst = state.surah === 1 && state.ayah === 1;
       const isLast = state.surah === 114 && state.ayah === SURAHS[113].ayahs;
@@ -1363,6 +1364,124 @@
 
     document.getElementById("sectionArabic").addEventListener("click", openFullscreenArabic);
     document.getElementById("fsOpenChipBtn").addEventListener("click", openFullscreenArabic);
+
+    // Separate Fullscreen Modals:
+    // 1) Double-tap/click on #liveSyncStage opens ONLY the Live Sync Fullscreen Modal
+    // 2) Tap on Red Box (#fsRedVerseBox) opens ONLY the FS Arabic Reading Mode
+    let isSyncFullscreenOpen = false;
+
+    function syncFullscreenLabels() {
+      const sMeta = SURAHS[state.surah - 1];
+      const infoEl = document.getElementById("syncFsSurahInfo");
+      const lblEl = document.getElementById("syncFsPageLabel");
+      if (infoEl) infoEl.textContent = `লাইভ সিঙ্ক • সূরাঃ ${sMeta.bn} • আয়াতঃ ${toBnNum(state.ayah)}`;
+      if (lblEl) lblEl.textContent = `${toBnNum(state.ayah)} / ${toBnNum(sMeta.ayahs)}`;
+      const audioBtn = document.getElementById("syncFsAudioBtn");
+      if (audioBtn) {
+        audioBtn.textContent = state.isAudioPlaying ? "❚❚ পজ" : "▶ প্লে";
+        audioBtn.classList.toggle("active", state.isAudioPlaying);
+      }
+    }
+
+    function openSyncFullscreen() {
+      const modal = document.getElementById("syncFullscreenModal");
+      const fsBody = document.getElementById("syncFsBody");
+      const trackWin = document.getElementById("syncTrackWindow");
+      if (!modal || !fsBody || !trackWin) return;
+      isSyncFullscreenOpen = true;
+      fsBody.appendChild(trackWin);
+      syncFullscreenLabels();
+      modal.classList.add("open");
+    }
+
+    function closeSyncFullscreen() {
+      const modal = document.getElementById("syncFullscreenModal");
+      const liveStage = document.getElementById("liveSyncStage");
+      const trackWin = document.getElementById("syncTrackWindow");
+      if (!modal) return;
+      isSyncFullscreenOpen = false;
+      modal.classList.remove("open");
+      if (liveStage && trackWin && trackWin.parentElement !== liveStage) {
+        liveStage.appendChild(trackWin);
+      }
+    }
+
+    (function setupSeparateFullscreenTriggers() {
+      const syncEl = document.getElementById("liveSyncStage");
+      if (syncEl) {
+        let lastTapTime = 0;
+        syncEl.addEventListener("dblclick", (e) => {
+          e.preventDefault();
+          openSyncFullscreen();
+        });
+        syncEl.addEventListener("touchend", (e) => {
+          if (e.changedTouches && e.changedTouches.length === 1) {
+            const now = Date.now();
+            if (now - lastTapTime < 340) {
+              lastTapTime = 0;
+              openSyncFullscreen();
+            } else {
+              lastTapTime = now;
+            }
+          }
+        }, { passive: true });
+      }
+
+      const redBox = document.getElementById("fsRedVerseBox");
+      if (redBox) {
+        redBox.style.cursor = "pointer";
+        redBox.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openFullscreenArabic();
+        });
+      }
+
+      const closeSyncBtn = document.getElementById("syncFsCloseBtn");
+      if (closeSyncBtn) closeSyncBtn.addEventListener("click", closeSyncFullscreen);
+
+      const syncAudioBtn = document.getElementById("syncFsAudioBtn");
+      if (syncAudioBtn) {
+        syncAudioBtn.addEventListener("click", async () => {
+          await toggleAudioPlayback();
+          syncFullscreenLabels();
+        });
+      }
+
+      const syncPrevBtn = document.getElementById("syncFsPrevBtn");
+      if (syncPrevBtn) {
+        syncPrevBtn.addEventListener("click", () => {
+          stepPrev();
+          syncFullscreenLabels();
+        });
+      }
+
+      const syncNextBtn = document.getElementById("syncFsNextBtn");
+      if (syncNextBtn) {
+        syncNextBtn.addEventListener("click", () => {
+          stepNext();
+          syncFullscreenLabels();
+        });
+      }
+
+      const syncUpBtn = document.getElementById("syncFsFontUpBtn");
+      if (syncUpBtn) {
+        syncUpBtn.addEventListener("click", () => {
+          state.settings.arabicSize = Math.min(76, state.settings.arabicSize + 4);
+          saveSettings();
+          applySettingsUI();
+        });
+      }
+
+      const syncDownBtn = document.getElementById("syncFsFontDownBtn");
+      if (syncDownBtn) {
+        syncDownBtn.addEventListener("click", () => {
+          state.settings.arabicSize = Math.max(30, state.settings.arabicSize - 4);
+          saveSettings();
+          applySettingsUI();
+        });
+      }
+    })();
+
     document.getElementById("fsCloseBtn").addEventListener("click", closeFullscreenArabic);
     document.getElementById("fsPrevBtn").addEventListener("click", stepPrev);
     document.getElementById("fsNextBtn").addEventListener("click", stepNext);
