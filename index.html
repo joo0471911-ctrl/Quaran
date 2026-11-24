@@ -51,7 +51,7 @@
     }
 
     html, body {
-      height: 100%;
+      min-height: 100%;
       background-color: var(--bg-primary);
       color: var(--text-primary);
       font-family: 'Hind Siliguri', sans-serif;
@@ -70,28 +70,35 @@
       box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     }
 
-    /* Top Header */
+    /* Top Header (Compact Boxed Pro Bar) */
     .top-bar {
       position: sticky;
-      top: 0;
+      top: 6px;
       z-index: 40;
-      background-color: var(--bg-primary);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 12px 14px;
+      margin: 6px 10px 4px;
+      background-color: rgba(16, 20, 18, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 6px 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
+    }
+
+    body.theme-sepia .top-bar {
+      background-color: rgba(237, 226, 206, 0.94);
     }
 
     .icon-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      background: transparent;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
       color: var(--text-primary);
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
@@ -101,41 +108,48 @@
 
     .icon-btn:hover, .icon-btn:active {
       background-color: var(--bg-band);
-      border-color: var(--border-subtle);
+      border-color: var(--accent-green);
     }
 
     .header-title-btn {
       flex: 1;
-      background: transparent;
-      border: none;
+      min-width: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
       color: var(--text-primary);
       text-align: center;
       cursor: pointer;
       padding: 4px 8px;
-      border-radius: 10px;
-      transition: background 0.15s ease;
+      border-radius: 8px;
+      transition: background 0.15s ease, border-color 0.15s ease;
     }
 
     .header-title-btn:hover {
-      background-color: var(--bg-secondary);
+      background-color: var(--bg-band);
+      border-color: var(--accent-green);
     }
 
     .header-main-title {
-      font-size: 20px;
+      font-size: 16.5px;
       font-weight: 700;
-      line-height: 1.25;
+      line-height: 1.15;
       letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .header-sub-title {
-      font-size: 13.5px;
+      font-size: 11.5px;
       color: var(--text-muted);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      margin-top: 2px;
-      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .offline-pill {
@@ -155,29 +169,32 @@
       color: var(--accent-gold);
     }
 
-    /* Quick Surah & Ayah Jump Bar */
+    /* Quick Surah & Ayah Jump Bar (Compact Boxed Strip) */
     .quick-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 8px 14px;
+      gap: 5px;
+      margin: 0 10px 6px;
+      padding: 5px 6px;
       background-color: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-subtle);
-      font-size: 13px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      font-size: 12px;
     }
 
     .quick-select {
       background-color: var(--bg-card);
       color: var(--text-primary);
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 6px 10px;
+      border-radius: 7px;
+      padding: 4px 7px;
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 14px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
       outline: none;
+      white-space: nowrap;
     }
 
     .quick-select.surah-select {
@@ -186,20 +203,22 @@
     }
 
     .quick-select.ayah-select {
-      width: 108px;
+      width: 84px;
     }
 
     .bookmark-btn {
-      padding: 6px 10px;
-      border-radius: 8px;
+      padding: 4px 8px;
+      border-radius: 7px;
       border: 1px solid var(--border-subtle);
       background-color: var(--bg-card);
       color: var(--text-secondary);
-      font-size: 13px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       white-space: nowrap;
     }
 
@@ -398,22 +417,24 @@
       color: var(--accent-gold);
     }
 
-    /* Fixed Bottom Audio Player + Swipe Navigation Bar */
+    /* Fixed Bottom Audio Player + Swipe Navigation Bar (Compact Boxed Dock) */
     .bottom-dock {
       position: fixed;
-      bottom: 0;
+      bottom: 6px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
-      max-width: 720px;
+      width: calc(100% - 20px);
+      max-width: 700px;
       background-color: var(--bg-secondary);
-      border-top: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 13px;
       z-index: 45;
-      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
     }
 
     .audio-bar {
-      padding: 8px 12px 6px;
+      padding: 6px 9px 5px;
       border-bottom: 1px solid var(--border-subtle);
       background-color: var(--bg-card);
     }
@@ -422,23 +443,23 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 7px;
     }
 
     .audio-play-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(34, 197, 94, 0.5);
       background-color: var(--accent-green);
       color: #05140b;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
       font-weight: 700;
-      box-shadow: 0 2px 10px rgba(34, 197, 94, 0.35);
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
     }
 
     .audio-play-btn:active {
@@ -516,26 +537,34 @@
     }
 
     .bottom-nav {
-      padding: 8px 14px;
+      padding: 5px 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 6px;
     }
 
     .nav-step-btn {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 10px;
+      justify-content: center;
+      gap: 4px;
+      padding: 5px 10px;
+      border-radius: 8px;
       border: 1px solid var(--border-subtle);
       background-color: var(--bg-card);
       color: var(--text-primary);
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 14px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-step-btn:hover:not(:disabled) {
+      border-color: var(--accent-green);
+      background-color: var(--bg-band);
     }
 
     .nav-step-btn:disabled {
@@ -553,11 +582,15 @@
     .fs-arabic-modal {
       position: fixed;
       inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
       background-color: var(--bg-primary);
       z-index: 120;
       display: none;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
       touch-action: pan-y;
     }
 
@@ -575,34 +608,48 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border-subtle);
+      margin: 6px 8px 4px;
+      padding: 5px 8px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 11px;
       background-color: var(--bg-secondary);
-      gap: 8px;
+      gap: 5px;
+      min-height: 40px;
     }
 
     .fs-surah-info {
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--accent-gold);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      min-width: 0;
     }
 
     .fs-controls-group {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+      flex-shrink: 0;
     }
 
     .fs-size-btn {
-      padding: 6px 11px;
-      border-radius: 8px;
+      padding: 4px 7px;
+      border-radius: 7px;
       border: 1px solid var(--border-subtle);
       background-color: var(--bg-card);
       color: var(--text-primary);
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 13.5px;
+      font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
+      white-space: nowrap;
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
     }
 
     .fs-size-btn.active {
@@ -612,27 +659,45 @@
     }
 
     .fs-close-btn {
-      padding: 6px 13px;
-      border-radius: 8px;
-      border: 1px solid var(--accent-green);
-      background-color: var(--accent-green-dim);
-      color: var(--accent-green);
+      padding: 4px 8px;
+      border-radius: 7px;
+      border: 1px solid rgba(239, 68, 68, 0.55);
+      background-color: rgba(239, 68, 68, 0.14);
+      color: #fca5a5;
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 14px;
+      font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
+      white-space: nowrap;
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
     }
 
     .fs-content-area {
-      flex: 1;
+      flex: 1 1 auto;
+      width: 100%;
+      min-height: 0;
       overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 28px 22px;
+      justify-content: flex-start;
+      padding: 24px 20px 84px;
       text-align: center;
       direction: rtl;
+    }
+
+    .fs-inner-center {
+      margin: auto 0;
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .fs-bismillah {
@@ -656,10 +721,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 18px;
-      border-top: 1px solid var(--border-subtle);
+      margin: 4px 8px 6px;
+      padding: 5px 8px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 11px;
       background-color: var(--bg-secondary);
-      gap: 10px;
+      gap: 6px;
+      min-height: 38px;
+    }
+
+    .fs-bottom-bar .swipe-hint {
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Drawers / Modals */
@@ -936,6 +1011,192 @@
     .status-toast.show {
       opacity: 1;
     }
+  
+    /* Focus Reading Mode: Hides Top Header, Quick Nav Bar, and Bottom Audio/Nav Dock */
+    body.focus-reading-mode .top-bar,
+    body.focus-reading-mode .quick-nav,
+    body.focus-reading-mode .bottom-dock {
+      display: none !important;
+    }
+
+    body.focus-reading-mode .reader-viewport {
+      padding-bottom: 78px;
+    }
+
+    .focus-restore-btn {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 55;
+      display: none;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-green);
+      background-color: var(--bg-card);
+      color: var(--accent-green);
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    body.focus-reading-mode .focus-restore-btn {
+      display: inline-flex;
+    }
+
+    .focus-mode-chip {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-card);
+      color: var(--text-secondary);
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .focus-mode-chip.active {
+      border-color: var(--accent-green);
+      background-color: var(--accent-green-dim);
+      color: var(--accent-green);
+    }
+
+    /* Bangla Translation inside Fullscreen Arabic Reading Pop-Up */
+    .fs-bangla-box {
+      direction: ltr;
+      margin-top: 24px;
+      max-width: 720px;
+      width: 100%;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-top: 3px solid var(--accent-green);
+      border-radius: 14px;
+      padding: 16px 18px;
+      text-align: center;
+    }
+
+    .fs-bangla-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 6px;
+    }
+
+    .fs-bangla-text {
+      font-size: 21px;
+      line-height: 1.75;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+  
+    /* Auto-hide Header & Bottom Dock whenever scrolling (both Up & Down) */
+    .top-bar,
+    .quick-nav {
+      transition: transform 0.22s ease, opacity 0.22s ease;
+      will-change: transform, opacity;
+    }
+
+    .bottom-dock {
+      transition: transform 0.22s ease, opacity 0.22s ease;
+      will-change: transform, opacity;
+    }
+
+    body.scroll-hide-chrome:not(.focus-reading-mode) .top-bar {
+      transform: translateY(-110%) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    body.scroll-hide-chrome:not(.focus-reading-mode) .quick-nav {
+      transform: translateY(-140%) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    body.scroll-hide-chrome:not(.focus-reading-mode) .bottom-dock {
+      transform: translateX(-50%) translateY(115%) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    .scroll-chrome-pill {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      z-index: 52;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-green);
+      background-color: var(--bg-card);
+      color: var(--accent-green);
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    body.scroll-hide-chrome:not(.focus-reading-mode) .scroll-chrome-pill {
+      display: inline-flex;
+    }
+
+  
+    /* Fullscreen Arabic Modal: Auto-hide top & bottom bars on scroll/reading + manual toggle button */
+    .fs-top-bar,
+    .fs-bottom-bar {
+      transition: transform 0.24s ease, opacity 0.24s ease;
+      will-change: transform, opacity;
+      z-index: 125;
+    }
+
+    .fs-arabic-modal.fs-bars-hidden .fs-top-bar,
+    .fs-arabic-modal.fs-bars-hidden .fs-bottom-bar {
+      display: none !important;
+    }
+
+    .fs-arabic-modal.fs-bars-hidden .fs-content-area {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      padding: 22px 18px 80px;
+      z-index: 122;
+    }
+
+    .fs-toggle-bars-btn {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 130;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-green);
+      background-color: var(--bg-card);
+      color: var(--accent-green);
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+    }
+
+    .fs-arabic-modal.open.fs-bars-hidden .fs-toggle-bars-btn {
+      display: inline-flex;
+    }
+
   </style>
 </head>
 <body>
@@ -976,6 +1237,7 @@
     <div class="quick-nav">
       <select class="quick-select surah-select" id="quickSurahSelect" aria-label="সূরা নির্বাচন"></select>
       <select class="quick-select ayah-select" id="quickAyahSelect" aria-label="আয়াত নির্বাচন"></select>
+      <button class="focus-mode-chip" id="focusModeBtn" title="পড়ার সময় উপরের ও নিচের অংশ লুকান">আড়াল করুন</button>
       <button class="bookmark-btn" id="bookmarkBtn" title="বুকমার্ক সংরক্ষণ">☆ বুকমার্ক</button>
     </div>
 
@@ -1002,6 +1264,7 @@
 
         <!-- Bangla Pronunciation Band -->
         <section class="pronunciation-band" id="sectionPronunciation">
+          <div style="font-size:12px; color:var(--accent-gold); font-weight:700; margin-bottom:4px;">বাংলা উচ্চারণ</div>
           <div id="pronunciationText">...</div>
         </section>
 
@@ -1072,18 +1335,25 @@
       <div class="fs-top-bar">
         <div class="fs-surah-info" id="fsSurahInfo">সূরাঃ আল-ফাতিহা • আয়াতঃ ১</div>
         <div class="fs-controls-group">
-          <button class="fs-size-btn" id="fsAudioBtn" title="মিশারি রশিদ আল-আফাসি তিলাওয়াত">▶ তিলাওয়াত</button>
+          <button class="fs-size-btn" id="fsAudioBtn" title="মিশারি রশিদ আল-আফাসি তিলাওয়াত">▶ প্লে</button>
           <button class="fs-size-btn" id="fsFontDownBtn" title="আরবি লেখা ছোট করুন">A-</button>
           <button class="fs-size-btn" id="fsFontUpBtn" title="আরবি লেখা বড় করুন">A+</button>
-          <button class="fs-close-btn" id="fsCloseBtn">✕ বন্ধ করুন</button>
+          <button class="fs-size-btn" id="fsHideBarsBtn" title="উপর ও নিচের বার লুকান">হাইড</button>
+          <button class="fs-close-btn" id="fsCloseBtn">✕ বন্ধ</button>
         </div>
       </div>
 
       <div class="fs-content-area" id="fsContentArea">
-        <div class="fs-bismillah" id="fsBismillah" style="display:none;">
-          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        <div class="fs-inner-center">
+          <div class="fs-bismillah" id="fsBismillah" style="display:none;">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+          </div>
+          <div class="fs-arabic-verse" id="fsArabicVerse">...</div>
+          <div class="fs-bangla-box" id="fsBanglaBox">
+            <div class="fs-bangla-label">বাংলা অনুবাদ</div>
+            <div class="fs-bangla-text" id="fsBanglaText">...</div>
+          </div>
         </div>
-        <div class="fs-arabic-verse" id="fsArabicVerse">...</div>
       </div>
 
       <div class="fs-bottom-bar">
@@ -1091,6 +1361,10 @@
         <div class="swipe-hint" id="fsPageLabel">১ / ৭ • স্লাইড করুন</div>
         <button class="nav-step-btn" id="fsNextBtn">পরবর্তী আয়াত →</button>
       </div>
+
+      <button class="fs-toggle-bars-btn" id="fsShowBarsBtn" title="উপর ও নিচের বার আবার দেখুন">
+        ☰ মেনু দেখান
+      </button>
     </div>
 
     <!-- Backdrop -->
@@ -1205,6 +1479,12 @@
     <!-- Hidden HTML5 Audio Player for Mishary Rashid Alafasy -->
     <audio id="quranAudioPlayer" preload="auto"></audio>
 
+    <button class="focus-restore-btn" id="focusRestoreBtn" title="উপর ও নিচের অংশ আবার দেখুন">
+      ☰ মেনু দেখান
+    </button>
+        <button class="scroll-chrome-pill" id="scrollChromePill" title="হেডার ও ফুটার দেখুন">
+      ↑ হেডার ও ফুটার
+    </button>
     <div class="status-toast" id="statusToast">লোড হচ্ছে...</div>
   </div>
 
@@ -1347,6 +1627,16 @@
         hadith: {
           text: "রাসূলুল্লাহ (সা.) বলেছেন: ইসলাম অপরিচিত অবস্থায় শুরু হয়েছে এবং অচিরেই তা আবার অপরিচিত অবস্থায় ফিরে যাবে। সুতরাং সেই অপরিচিত (হকপন্থী) মুমিনদের জন্য সুসংবাদ!",
           ref: "সহীহ মুসলিম, হাদীস নং ১৪৫"
+        }
+      },
+      "6:5": {
+        arabic: "فَقَدْ كَذَّبُوا بِالْحَقِّ لَمَّا جَاءَهُمْ ۖ فَسَوْفَ يَأْتِيهِمْ أَنبَاءُ مَا كَانُوا بِهِ يَسْتَهْزِئُونَ",
+        pronunciation: "ফাক্বাদ কাযযাবূ বিলহাক্বক্বি লাম্মা- জা~আহুম, ফাসাওফা ইয়া'তীহিম আম্বা~উ মা- কা-নূ বিহী ইয়াসতাহযিউন।",
+        translation: "অতঃপর সত্য যখন তাদের কাছে এসেছে, তখন তারা তাকে মিথ্যা প্রতিপন্ন করেছে। সুতরাং তারা যে বিষয়ে ঠাট্টা-বিদ্রূপ করত, তার প্রকৃত সংবাদ শীঘ্রই তাদের কাছে পৌঁছে যাবে। [৫]",
+        tafsir: "[৫] কাফের ও মুশরিকরা কুরআন ও রাসূল (সা.)-এর দাওয়াতকে মিথ্যা মনে করে ঠাট্টা করত। আল্লাহ তাআলা সতর্ক করে দিচ্ছেন যে, অচিরেই দুনিয়া ও আখিরাতে তারা এর বাস্তব পরিণাম দেখতে পাবে।",
+        hadith: {
+          text: "রাসূলুল্লাহ (সা.) বলেছেন: তোমাদের মধ্যে সর্বোত্তম সেই ব্যক্তি, যে নিজে কুরআন শিক্ষা করে এবং অন্যকে তা শিক্ষা দেয়।",
+          ref: "সহীহ বুখারী, হাদীস নং ৫০২৭"
         }
       },
       "112:1": {
@@ -1517,6 +1807,7 @@
         banglaSize: 19,
         tafsirSize: 17,
         theme: "dark",
+        focusReadingMode: false,
         autoPlayNext: true,
         repeatAyah: false,
         playbackRate: 1.0
@@ -1621,6 +1912,12 @@
     function applySettingsUI() {
       const s = state.settings;
       document.body.classList.toggle("theme-sepia", s.theme === "sepia");
+      document.body.classList.toggle("focus-reading-mode", Boolean(s.focusReadingMode));
+      const focusBtn = document.getElementById("focusModeBtn");
+      if (focusBtn) {
+        focusBtn.classList.toggle("active", Boolean(s.focusReadingMode));
+        focusBtn.textContent = s.focusReadingMode ? "মেনু দেখান" : "আড়াল করুন";
+      }
       document.getElementById("themeDarkBtn").classList.toggle("active", s.theme === "dark");
       document.getElementById("themeSepiaBtn").classList.toggle("active", s.theme === "sepia");
 
@@ -1674,6 +1971,341 @@
       return text.replace(/([ن|م]ّ)/g, '<span class="tajweed-ghunnah">$1</span>');
     }
 
+
+    // Accurate Arabic (Uthmani & Standard) to Bangla Phonetic Transliteration
+    function arabicToBanglaPronunciation(arText) {
+      if (!arText) return "";
+      // Clean waqf marks and extra symbols while keeping letters, harakat, shadda, sukun, maddah, hamza
+      let text = arText
+        .replace(/[ۖۗۘۙۚۛۜ۞۩۝]/g, " ")
+        .replace(/ـ/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      const words = text.split(" ");
+      const bnWords = words.map(w => convertArabicWordToBangla(w)).filter(Boolean);
+      return bnWords.join(" ") + "।";
+    }
+
+    function convertArabicWordToBangla(word) {
+      if (!word) return "";
+
+      // Common exact Quranic words & prefixes for natural, authentic Bangladeshi Tajweed pronunciation
+      const exactDict = {
+        "بِسْمِ": "বিসমি",
+        "اللَّهِ": "ল্লা-হি",
+        "اللَّهُ": "আল্লা-হু",
+        "اللَّهَ": "আল্লা-হা",
+        "لِلَّهِ": "লিল্লা-হি",
+        "الرَّحْمَٰنِ": "ররাহমা-নি",
+        "الرَّحِيمِ": "ররাহীম",
+        "الْحَمْدُ": "আলহামদু",
+        "رَبِّ": "রাব্বি",
+        "الْعَالَمِينَ": "লআ-লামীন",
+        "مَالِكِ": "মা-লিকি",
+        "يَوْمِ": "ইয়াওমি",
+        "الدِّينِ": "দ্দ্বীন",
+        "إِيَّاكَ": "ইয়্যা-কা",
+        "نَعْبُدُ": "না'বুদু",
+        "نَسْتَعِينُ": "নাসতাঈন",
+        "اهْدِنَا": "ইহদিনা-",
+        "الصِّرَاطَ": "স্সিরা-ত্বা",
+        "الْمُسْتَقِيمَ": "লমুসতাক্বীম",
+        "صِرَاطَ": "সিরা-ত্বা",
+        "الَّذِينَ": "ল্লাযীনা",
+        "أَنْعَمْتَ": "আন'আমতা",
+        "عَلَيْهِمْ": "আলাইহিম",
+        "غَيْرِ": "গাইরি",
+        "الْمَغْضُوبِ": "লমাগদ্বূবি",
+        "وَلَا": "ওয়ালা-",
+        "الضَّالِّينَ": "দ্দ্বা~ল্লীন",
+        "قُلْ": "ক্বুল",
+        "هُوَ": "হুওয়া",
+        "أَحَدٌ": "আহাদ",
+        "الصَّمَدُ": "স্সামাদ",
+        "فَقَدْ": "ফাক্বাদ",
+        "كَذَّبُوا": "কাযযাবূ",
+        "بِالْحَقِّ": "বিলহাক্বক্বি",
+        "لَمَّا": "লাম্মা-",
+        "جَاءَهُمْ": "জা~আহুম",
+        "فَسَوْفَ": "ফাসাওফা",
+        "يَأْتِيهِمْ": "ইয়া'তীহিম",
+        "أَنْبَاءُ": "আম্বা~উ",
+        "مَا": "মা-",
+        "كَانُوا": "কা-নূ",
+        "بِهِ": "বিহী",
+        "يَسْتَهْزِئُونَ": "ইয়াসতাহযিউন"
+      };
+
+      // Strip tatweel/sifr mustadeer for dictionary lookup
+      const cleanLookup = word.replace(/[ۣ۟۠ۡۢۤۥۦۧۨ]/g, "");
+      if (exactDict[cleanLookup]) {
+        return exactDict[cleanLookup];
+      }
+
+      // Consonant mapping table (Bangladeshi Islamic Foundation / Qari standard)
+      const consMap = {
+        "ب": "ব",
+        "ت": "ত",
+        "ث": "ছ",
+        "ج": "জ",
+        "ح": "হ",
+        "خ": "খ",
+        "د": "দ",
+        "ذ": "য",
+        "ر": "র",
+        "ز": "য",
+        "س": "স",
+        "ش": "শ",
+        "ص": "স",
+        "ض": "দ্ব",
+        "ط": "ত্ব",
+        "ظ": "য্ব",
+        "ع": "আ'",
+        "غ": "গ",
+        "ف": "ফ",
+        "ق": "ক্ব",
+        "ك": "ক",
+        "ل": "ল",
+        "م": "ম",
+        "ن": "ন",
+        "ه": "হ",
+        "ة": "ত",
+        "و": "ও",
+        "ي": "ইয়",
+        "ى": "আ-",
+        "ء": "আ",
+        "أ": "আ",
+        "إ": "ই",
+        "ؤ": "উ",
+        "ئ": "ই",
+        "آ": "আ~"
+      };
+
+      const FATHA = "َ";
+      const DAMMA = "ُ";
+      const KASRA = "ِ";
+      const FATHATAN = "ً";
+      const DAMMATAN = "ٌ";
+      const KASRATAN = "ٍ";
+      const SHADDA = "ّ";
+      const SUKUN = "ْ";
+      const KHANJAR_ALIF = "ٰ";
+      const MADDAH = "ٓ";
+      const HAMZA_ABOVE = "ٔ";
+
+      // Normalize Uthmani small high sukun (ۡ) to standard sukun
+      let w = word.replace(/ۡ/g, SUKUN).replace(/[ۣ۟۠ۢۤۥۦۧۨ]/g, "");
+
+      // Handle definite article ال at start of word
+      let prefix = "";
+      const sunLetters = "تثدذرزسشصضطظلن";
+      if (w.startsWith("ٱل") || w.startsWith("ال")) {
+        const rest = w.slice(2);
+        const firstBase = rest[0] || "";
+        if (sunLetters.includes(firstBase)) {
+          prefix = "আ" + (consMap[firstBase] || "");
+          w = rest;
+        } else {
+          prefix = "আল";
+          w = rest;
+        }
+      } else if (w.startsWith("بِٱل") || w.startsWith("بِال")) {
+        const rest = w.slice(3);
+        const firstBase = rest[0] || "";
+        if (sunLetters.includes(firstBase)) {
+          prefix = "বি" + (consMap[firstBase] || "");
+          w = rest;
+        } else {
+          prefix = "বিল";
+          w = rest;
+        }
+      } else if (w.startsWith("وَٱل") || w.startsWith("وَال")) {
+        const rest = w.slice(3);
+        const firstBase = rest[0] || "";
+        if (sunLetters.includes(firstBase)) {
+          prefix = "ওয়া" + (consMap[firstBase] || "");
+          w = rest;
+        } else {
+          prefix = "ওয়াল";
+          w = rest;
+        }
+      } else if (w.startsWith("لِل")) {
+        const rest = w.slice(2);
+        const firstBase = rest[0] || "";
+        if (sunLetters.includes(firstBase)) {
+          prefix = "লি" + (consMap[firstBase] || "");
+          w = rest;
+        } else {
+          prefix = "লিল";
+          w = rest;
+        }
+      }
+
+      let out = prefix;
+      const chars = Array.from(w);
+      let i = 0;
+
+      while (i < chars.length) {
+        const ch = chars[i];
+
+        // Skip standalone diacritics if any
+        if (!consMap[ch] && ch !== "ا" && ch !== "ٱ") {
+          i++;
+          continue;
+        }
+
+        // Gather diacritics immediately following this base letter
+        let hasShadda = false;
+        let vowel = "";
+        let hasSukun = false;
+        let hasMaddah = false;
+        let hasKhanjarAlif = false;
+        let j = i + 1;
+
+        while (j < chars.length && !consMap[chars[j]] && chars[j] !== "ا" && chars[j] !== "ٱ") {
+          const d = chars[j];
+          if (d === SHADDA) hasShadda = true;
+          else if (d === FATHA || d === FATHATAN) vowel = d;
+          else if (d === DAMMA || d === DAMMATAN) vowel = d;
+          else if (d === KASRA || d === KASRATAN) vowel = d;
+          else if (d === SUKUN) hasSukun = true;
+          else if (d === MADDAH) hasMaddah = true;
+          else if (d === KHANJAR_ALIF) hasKhanjarAlif = true;
+          j++;
+        }
+
+        // Handle Alif / Alif Wasla
+        if (ch === "ا" || ch === "ٱ") {
+          if (i === 0 && !prefix) {
+            if (vowel === KASRA) out += "ই";
+            else if (vowel === DAMMA) out += "উ";
+            else if (hasMaddah) out += "আ~";
+            else out += "আ";
+          } else {
+            // Elongation alif after fatha
+            if (out.endsWith("া")) {
+              out += hasMaddah ? "~" : "-";
+            } else if (!hasSukun && i < chars.length - 1) {
+              out += "া-";
+            }
+          }
+          i = j;
+          continue;
+        }
+
+        // Handle Initial Hamza / Alif-Hamza
+        if ((ch === "أ" || ch === "إ" || ch === "ء" || ch === "آ") && i === 0 && !prefix) {
+          if (ch === "إ" || vowel === KASRA || vowel === KASRATAN) out += "ই";
+          else if (vowel === DAMMA || vowel === DAMMATAN) out += "উ";
+          else if (ch === "آ" || hasMaddah) out += "আ~";
+          else out += "আ";
+
+          if (vowel === FATHATAN) out += "ন";
+          else if (vowel === DAMMATAN) out += "ন";
+          else if (vowel === KASRATAN) out += "ন";
+          i = j;
+          continue;
+        }
+
+        // Base consonant sound
+        let baseBn = consMap[ch] || "";
+        if (ch === "و" && i === 0 && !prefix) baseBn = "ওয়া";
+        if (ch === "ي" && i === 0 && !prefix) baseBn = "ইয়া";
+        if (ch === "ع") {
+          if (vowel === KASRA || vowel === KASRATAN) baseBn = "ই'";
+          else if (vowel === DAMMA || vowel === DAMMATAN) baseBn = "উ'";
+          else baseBn = "আ'";
+        }
+
+        // Double consonant if Shadda
+        if (hasShadda && baseBn) {
+          baseBn = baseBn + baseBn;
+        }
+
+        // Check next char for long vowels (ا, ي, و)
+        const nextCh = chars[j] || "";
+        const nextNextCh = chars[j + 1] || "";
+        const nextHasVowel = [FATHA, DAMMA, KASRA, SHADDA, FATHATAN, DAMMATAN, KASRATAN].includes(nextNextCh);
+
+        // Apply vowel / kar
+        if (ch === "و" && i === 0 && !prefix && (vowel === FATHA || !vowel)) {
+          out += "ওয়া";
+        } else if (ch === "ي" && i === 0 && !prefix && vowel === FATHA) {
+          out += "ইয়া";
+        } else if (ch === "ع") {
+          out += baseBn;
+          if (hasKhanjarAlif || (nextCh === "ا" && !nextHasVowel)) out += "-";
+          if (vowel === FATHATAN || vowel === DAMMATAN || vowel === KASRATAN) out += "ন";
+        } else if (vowel === FATHA) {
+          if (baseBn.endsWith("া")) {
+            out += baseBn;
+          } else if (nextCh === "ا" && !nextHasVowel) {
+            out += baseBn + "া-";
+            j++; // consume elongation alif
+          } else if (hasKhanjarAlif) {
+            out += baseBn + "া-";
+          } else {
+            out += baseBn;
+          }
+        } else if (vowel === FATHATAN) {
+          out += baseBn + "ান";
+        } else if (vowel === KASRA) {
+          if (nextCh === "ي" && !nextHasVowel) {
+            out += baseBn + "ী";
+            j++; // consume elongation ya
+          } else {
+            out += baseBn + "ি";
+          }
+        } else if (vowel === KASRATAN) {
+          out += baseBn + "িন";
+        } else if (vowel === DAMMA) {
+          if (nextCh === "و" && !nextHasVowel) {
+            out += baseBn + "ূ";
+            j++; // consume elongation waw
+          } else {
+            out += baseBn + "ু";
+          }
+        } else if (vowel === DAMMATAN) {
+          out += baseBn + "ুন";
+        } else if (hasKhanjarAlif) {
+          out += baseBn + "া-";
+        } else if (hasSukun) {
+          out += baseBn;
+        } else {
+          // Silent trailing letter or bare consonant
+          if (ch === "و" && out.endsWith("ূ")) {
+            // already consumed
+          } else if (ch === "ي" && out.endsWith("ী")) {
+            // already consumed
+          } else if (ch === "ى") {
+            out += "া-";
+          } else {
+            out += baseBn;
+          }
+        }
+
+        if (hasMaddah && !out.endsWith("~")) {
+          out += "~";
+        }
+
+        i = j;
+      }
+
+      // Clean up awkward vowel combinations
+      out = out
+        .replace(/াা/g, "া")
+        .replace(/িী/g, "ী")
+        .replace(/ুূ/g, "ূ")
+        .replace(/ওু/g, "উ")
+        .replace(/ওি/g, "উই")
+        .replace(/ইয়ি/g, "ই")
+        .replace(/ইয়ু/g, "ইউ");
+
+      return out;
+    }
+
+
     // Fetch Surah Data (Checks Memory Cache -> IndexedDB Offline Store -> Built-in Data -> Online API)
     async function loadSurahData(surahNum) {
       if (state.cache[surahNum]) {
@@ -1683,6 +2315,17 @@
       // 1. Check IndexedDB Offline Storage first
       const dbVerses = await getSurahFromDB(surahNum);
       if (dbVerses && Object.keys(dbVerses).length > 0) {
+        let upgraded = false;
+        Object.keys(dbVerses).forEach(k => {
+          const v = dbVerses[k];
+          if (v && v.arabic && (!v.pronunciation || /[a-zA-Z]/.test(v.pronunciation))) {
+            v.pronunciation = arabicToBanglaPronunciation(v.arabic);
+            upgraded = true;
+          }
+        });
+        if (upgraded) {
+          saveSurahToDB(surahNum, dbVerses);
+        }
         state.cache[surahNum] = dbVerses;
         state.savedSurahsSet.add(surahNum);
         return dbVerses;
@@ -1748,7 +2391,7 @@
 
             versesMap[aNum] = {
               arabic: item.text,
-              pronunciation: trAyahs[idx] ? trAyahs[idx].text : "",
+              pronunciation: arabicToBanglaPronunciation(item.text),
               translation: `${bnAyahs[idx].text} [${toBnNum(aNum)}]`,
               tafsir: tafsirBody,
               hadith: pickedHadith
@@ -1777,11 +2420,11 @@
       const fsBtn = document.getElementById("fsAudioBtn");
       if (isPlaying) {
         playSvg.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
-        fsBtn.textContent = "❚❚ বিরতি";
+        fsBtn.textContent = "❚❚ পজ";
         fsBtn.classList.add("active");
       } else {
         playSvg.innerHTML = '<polygon points="6 4 20 12 6 20 6 4"></polygon>';
-        fsBtn.textContent = "▶ তিলাওয়াত";
+        fsBtn.textContent = "▶ প্লে";
         fsBtn.classList.remove("active");
       }
     }
@@ -1934,6 +2577,7 @@
         const formattedArabicHTML = `${formatArabicWithHighlight(data.arabic)} <span class="ayah-end-badge">${toArNum(state.ayah)}</span>`;
         document.getElementById("arabicText").innerHTML = formattedArabicHTML;
         document.getElementById("fsArabicVerse").innerHTML = formattedArabicHTML;
+        document.getElementById("fsBanglaText").textContent = data.translation;
         document.getElementById("pronunciationText").textContent = data.pronunciation;
         document.getElementById("translationText").textContent = data.translation;
         document.getElementById("tafsirText").textContent = data.tafsir;
@@ -1941,6 +2585,8 @@
         document.getElementById("hadithRef").textContent = `সূত্র: ${data.hadith.ref}`;
       }
 
+      const fsAreaEl = document.getElementById("fsContentArea");
+      if (fsAreaEl) fsAreaEl.scrollTop = 0;
       localStorage.setItem("quran_last_pos", JSON.stringify({ surah: state.surah, ayah: state.ayah }));
       prepareAyahAudio(autoPlayAudio);
     }
@@ -1978,16 +2624,92 @@
       }
     }
 
-    // Fullscreen Arabic Reading Mode Controls
+    // Fullscreen Arabic Reading Mode Controls (with Auto-Hide & Manual Hide/Show Toggle)
+    let fsAutoHideTimer = null;
+
+    function setFullscreenBarsHidden(hidden) {
+      const modal = document.getElementById("fsArabicModal");
+      if (!modal) return;
+      modal.classList.toggle("fs-bars-hidden", Boolean(hidden));
+    }
+
+    function scheduleFsAutoHide(delayMs = 2600) {
+      clearTimeout(fsAutoHideTimer);
+      fsAutoHideTimer = setTimeout(() => {
+        if (state.isFullscreenArabic) {
+          setFullscreenBarsHidden(true);
+        }
+      }, delayMs);
+    }
+
     function openFullscreenArabic() {
       state.isFullscreenArabic = true;
-      document.getElementById("fsArabicModal").classList.add("open");
+      const modal = document.getElementById("fsArabicModal");
+      modal.classList.add("open");
+      setFullscreenBarsHidden(false);
+      const fsArea = document.getElementById("fsContentArea");
+      if (fsArea) fsArea.scrollTop = 0;
+      scheduleFsAutoHide(2600);
     }
 
     function closeFullscreenArabic() {
       state.isFullscreenArabic = false;
-      document.getElementById("fsArabicModal").classList.remove("open");
+      clearTimeout(fsAutoHideTimer);
+      const modal = document.getElementById("fsArabicModal");
+      modal.classList.remove("open");
+      setFullscreenBarsHidden(false);
     }
+
+    document.getElementById("fsHideBarsBtn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      clearTimeout(fsAutoHideTimer);
+      setFullscreenBarsHidden(true);
+      showToast("উপর ও নিচের বার লুকানো হয়েছে");
+    });
+
+    document.getElementById("fsShowBarsBtn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      clearTimeout(fsAutoHideTimer);
+      setFullscreenBarsHidden(false);
+      showToast("উপর ও নিচের বার দেখানো হচ্ছে");
+    });
+
+    (function setupFsReadingAutoHide() {
+      const fsArea = document.getElementById("fsContentArea");
+      let fsTouchY = 0;
+
+      if (fsArea) {
+        fsArea.addEventListener("scroll", () => {
+          if (state.isFullscreenArabic) {
+            clearTimeout(fsAutoHideTimer);
+            setFullscreenBarsHidden(true);
+          }
+        }, { passive: true });
+
+        fsArea.addEventListener("touchstart", (e) => {
+          if (e.touches && e.touches.length === 1) {
+            fsTouchY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        fsArea.addEventListener("touchmove", (e) => {
+          if (e.touches && e.touches.length === 1 && state.isFullscreenArabic) {
+            const dy = Math.abs(e.touches[0].clientY - fsTouchY);
+            if (dy > 10) {
+              clearTimeout(fsAutoHideTimer);
+              setFullscreenBarsHidden(true);
+            }
+          }
+        }, { passive: true });
+
+        fsArea.addEventListener("wheel", (e) => {
+          if (state.isFullscreenArabic && Math.abs(e.deltaY) > 4) {
+            clearTimeout(fsAutoHideTimer);
+            setFullscreenBarsHidden(true);
+          }
+        }, { passive: true });
+      }
+    })();
 
     document.getElementById("sectionArabic").addEventListener("click", openFullscreenArabic);
     document.getElementById("fsCloseBtn").addEventListener("click", closeFullscreenArabic);
@@ -2312,6 +3034,21 @@
     document.getElementById("nextAyahBtn").addEventListener("click", stepNext);
     document.getElementById("bookmarkBtn").addEventListener("click", toggleBookmark);
 
+    function toggleFocusReadingMode(forceVal = null) {
+      state.settings.focusReadingMode = (typeof forceVal === "boolean")
+        ? forceVal
+        : !state.settings.focusReadingMode;
+      saveSettings();
+      applySettingsUI();
+      showToast(state.settings.focusReadingMode
+        ? "উপর ও নিচের অংশ লুকানো হয়েছে • পড়ুন"
+        : "উপর ও নিচের অংশ দেখানো হচ্ছে");
+    }
+
+    document.getElementById("focusModeBtn").addEventListener("click", () => toggleFocusReadingMode());
+    document.getElementById("focusRestoreBtn").addEventListener("click", () => toggleFocusReadingMode(false));
+
+
     // Settings Controls
     ["Arabic", "Pronunciation", "Translation", "Tafsir", "Hadith"].forEach(name => {
       document.getElementById("toggle" + name).addEventListener("change", (e) => {
@@ -2356,6 +3093,88 @@
       saveSettings();
       applySettingsUI();
     });
+
+
+    // Auto-hide Header & Bottom Bar whenever user scrolls (both up and down)
+    (function setupScrollAutoHide() {
+      let lastScrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      let touchStartY = 0;
+      let programmaticScrollUntil = 0;
+
+      // Mark programmatic scrollTo calls so switching Ayah doesn't immediately hide bars
+      const origScrollTo = window.scrollTo.bind(window);
+      window.scrollTo = function(...args) {
+        programmaticScrollUntil = Date.now() + 550;
+        return origScrollTo(...args);
+      };
+
+      function hideChrome() {
+        if (Date.now() < programmaticScrollUntil) return;
+        if (state.isFullscreenArabic || state.settings.focusReadingMode) return;
+        document.body.classList.add("scroll-hide-chrome");
+      }
+
+      function showChrome() {
+        document.body.classList.remove("scroll-hide-chrome");
+      }
+
+      function onAnyScroll() {
+        if (state.isFullscreenArabic || state.settings.focusReadingMode) {
+          showChrome();
+          return;
+        }
+        const currentY = Math.max(
+          0,
+          window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        );
+        const delta = Math.abs(currentY - lastScrollY);
+
+        if (currentY <= 4) {
+          showChrome();
+        } else if (delta >= 4) {
+          hideChrome();
+        }
+        lastScrollY = currentY;
+      }
+
+      // Listen on window, document, and body (capture phase catches inner scroll containers too)
+      window.addEventListener("scroll", onAnyScroll, { passive: true, capture: true });
+      document.addEventListener("scroll", onAnyScroll, { passive: true, capture: true });
+
+      // Mobile touch vertical drag detection (works even on short verses or WebView wrappers)
+      const viewport = document.getElementById("readerViewport");
+      if (viewport) {
+        viewport.addEventListener("touchstart", function(e) {
+          if (e.touches && e.touches.length === 1) {
+            touchStartY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        viewport.addEventListener("touchmove", function(e) {
+          if (e.touches && e.touches.length === 1) {
+            const dy = Math.abs(e.touches[0].clientY - touchStartY);
+            if (dy > 14) {
+              hideChrome();
+            }
+          }
+        }, { passive: true });
+      }
+
+      // Desktop mouse wheel / trackpad detection
+      window.addEventListener("wheel", function(e) {
+        if (Math.abs(e.deltaY) > 4) {
+          hideChrome();
+        }
+      }, { passive: true });
+
+      const pill = document.getElementById("scrollChromePill");
+      if (pill) {
+        pill.addEventListener("click", function(e) {
+          e.stopPropagation();
+          showChrome();
+        });
+      }
+    })();
 
     window.addEventListener("online", updateNetworkBadge);
     window.addEventListener("offline", updateNetworkBadge);
