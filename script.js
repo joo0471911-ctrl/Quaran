@@ -1362,6 +1362,7 @@
     })();
 
     document.getElementById("sectionArabic").addEventListener("click", openFullscreenArabic);
+    document.getElementById("fsOpenChipBtn").addEventListener("click", openFullscreenArabic);
     document.getElementById("fsCloseBtn").addEventListener("click", closeFullscreenArabic);
     document.getElementById("fsPrevBtn").addEventListener("click", stepPrev);
     document.getElementById("fsNextBtn").addEventListener("click", stepNext);
