@@ -140,14 +140,18 @@
     }
 
     .header-sub-title {
-      font-size: 11.5px;
-      color: var(--text-muted);
+      font-size: 13px;
+      color: var(--accent-gold);
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 5px;
-      margin-top: 1px;
+      margin-top: 2px;
       white-space: nowrap;
+    }
+
+    #headerSubtitleText {
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -155,13 +159,14 @@
     .offline-pill {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      padding: 1px 7px;
+      gap: 2px;
+      font-size: 9.5px;
+      padding: 1px 5px;
       border-radius: 999px;
       background: var(--accent-green-dim);
       color: var(--accent-green);
       font-weight: 600;
+      flex-shrink: 0;
     }
 
     .offline-pill.is-offline {
@@ -188,38 +193,41 @@
       color: var(--text-primary);
       border: 1px solid var(--border-subtle);
       border-radius: 7px;
-      padding: 4px 7px;
+      padding: 4px 6px;
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 12.5px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
       outline: none;
       white-space: nowrap;
     }
 
     .quick-select.surah-select {
-      flex: 1;
-      min-width: 0;
+      flex: 1.4;
+      min-width: 112px;
     }
 
     .quick-select.ayah-select {
-      width: 84px;
+      width: 92px;
+      flex-shrink: 0;
     }
 
     .bookmark-btn {
-      padding: 4px 8px;
+      padding: 4px 6px;
       border-radius: 7px;
       border: 1px solid var(--border-subtle);
       background-color: var(--bg-card);
       color: var(--text-secondary);
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      justify-content: center;
+      min-width: 28px;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .bookmark-btn.active {
@@ -334,6 +342,164 @@
       padding: 4px 11px;
       border-radius: 999px;
     }
+
+
+    /* Synchronized Live Audio Teleprompter Stage (Arabic + Pronunciation + Translation together) */
+    .live-sync-stage {
+      margin: 8px 12px 12px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-top: 3px solid var(--accent-green);
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      transition: transform 0.28s ease, border-color 0.25s ease;
+    }
+
+    .live-sync-stage.is-speaking {
+      border-color: var(--accent-green);
+      box-shadow: 0 6px 22px rgba(34, 197, 94, 0.14);
+    }
+
+    .sync-stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 12px;
+    }
+
+    .sync-stage-title {
+      font-weight: 700;
+      color: var(--accent-green);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sync-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      display: inline-block;
+    }
+
+    .live-sync-stage.is-speaking .sync-live-dot {
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+      animation: pulseDot 1.1s infinite alternate;
+    }
+
+    @keyframes pulseDot {
+      from { transform: scale(0.9); opacity: 0.7; }
+      to { transform: scale(1.25); opacity: 1; }
+    }
+
+    .sync-track-window {
+      max-height: 220px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      padding-right: 2px;
+    }
+
+    .sync-words-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 8px;
+      direction: rtl;
+      padding: 4px 2px 10px;
+    }
+
+    .sync-word-chip {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4px 7px;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.02);
+      transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .sync-word-ar {
+      font-family: var(--arabic-font);
+      font-size: calc(var(--arabic-size) * 0.62);
+      line-height: 1.65;
+      color: var(--text-primary);
+    }
+
+    .sync-word-bn {
+      direction: ltr;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 12px;
+      line-height: 1.25;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .sync-word-chip.active-word {
+      background: var(--accent-green-dim);
+      border-color: var(--accent-green);
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    .sync-word-chip.active-word .sync-word-ar {
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    .sync-word-chip.active-word .sync-word-bn {
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    .sync-pron-line {
+      margin-top: 8px;
+      padding: 9px 11px;
+      border-radius: 9px;
+      background-color: var(--bg-band);
+      border: 1px solid var(--border-subtle);
+      font-size: calc(var(--bangla-size) - 1px);
+      line-height: 1.6;
+      color: var(--text-secondary);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sync-meaning-line {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background-color: var(--bg-secondary);
+      border-left: 3.5px solid var(--accent-gold);
+      font-size: var(--bangla-size);
+      line-height: 1.7;
+      color: var(--text-primary);
+      text-align: center;
+      font-weight: 600;
+    }
+
+        <!-- Synchronized Live Audio Stage: Arabic Words + Bangla Pronunciation + Bangla Translation Together -->
+        <section class="live-sync-stage" id="liveSyncStage" aria-label="অডিওর সাথে আরবি, বাংলা উচ্চারণ ও অর্থ">
+          <div class="sync-stage-header">
+            <span class="sync-stage-title">
+              <span class="sync-live-dot"></span>
+              লাইভ সিঙ্ক: আরবি + উচ্চারণ + অর্থ
+            </span>
+            <span id="syncProgressPercent" style="color:var(--text-muted); font-weight:700;">০%</span>
+          </div>
+          <div class="sync-track-window" id="syncTrackWindow">
+            <div class="sync-words-flow" id="syncWordsFlow"></div>
+            <div class="sync-pron-line" id="syncPronLine">...</div>
+            <div class="sync-meaning-line" id="syncMeaningLine">...</div>
+          </div>
+        </section>
 
     /* Bangla Pronunciation Band */
     .pronunciation-band {
@@ -1048,16 +1214,17 @@
     }
 
     .focus-mode-chip {
-      padding: 6px 10px;
-      border-radius: 8px;
+      padding: 4px 6px;
+      border-radius: 7px;
       border: 1px solid var(--border-subtle);
       background-color: var(--bg-card);
       color: var(--text-secondary);
       font-family: 'Hind Siliguri', sans-serif;
-      font-size: 12.5px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .focus-mode-chip.active {
@@ -1237,8 +1404,8 @@
     <div class="quick-nav">
       <select class="quick-select surah-select" id="quickSurahSelect" aria-label="সূরা নির্বাচন"></select>
       <select class="quick-select ayah-select" id="quickAyahSelect" aria-label="আয়াত নির্বাচন"></select>
-      <button class="focus-mode-chip" id="focusModeBtn" title="পড়ার সময় উপরের ও নিচের অংশ লুকান">আড়াল করুন</button>
-      <button class="bookmark-btn" id="bookmarkBtn" title="বুকমার্ক সংরক্ষণ">☆ বুকমার্ক</button>
+      <button class="focus-mode-chip" id="focusModeBtn" title="পড়ার সময় উপরের ও নিচের অংশ লুকান">আড়াল</button>
+      <button class="bookmark-btn" id="bookmarkBtn" title="বুকমার্ক সংরক্ষণ">☆</button>
     </div>
 
     <!-- Single-Screen Unified Reader -->
@@ -1916,7 +2083,7 @@
       const focusBtn = document.getElementById("focusModeBtn");
       if (focusBtn) {
         focusBtn.classList.toggle("active", Boolean(s.focusReadingMode));
-        focusBtn.textContent = s.focusReadingMode ? "মেনু দেখান" : "আড়াল করুন";
+        focusBtn.textContent = s.focusReadingMode ? "মেনু" : "আড়াল";
       }
       document.getElementById("themeDarkBtn").classList.toggle("active", s.theme === "dark");
       document.getElementById("themeSepiaBtn").classList.toggle("active", s.theme === "sepia");
@@ -1958,10 +2125,10 @@
     function updateNetworkBadge() {
       const badge = document.getElementById("networkStatusBadge");
       if (navigator.onLine) {
-        badge.textContent = "● অনলাইন ও অফলাইন প্রস্তুত";
+        badge.textContent = "● অনলাইন";
         badge.classList.remove("is-offline");
       } else {
-        badge.textContent = "● অফলাইন মোড সক্রিয়";
+        badge.textContent = "● অফলাইন";
         badge.classList.add("is-offline");
       }
     }
@@ -2488,14 +2655,106 @@
       }
     });
 
+
+    // Synchronized Word Highlighting & Auto-Scroll with Mishary Audio Playback
+    let currentSyncWordCount = 0;
+    let lastHighlightedWordIdx = -1;
+
+    function buildSynchronizedVerseStage(arabicRaw, pronunciationText, translationText) {
+      const flowEl = document.getElementById("syncWordsFlow");
+      const pronEl = document.getElementById("syncPronLine");
+      const meanEl = document.getElementById("syncMeaningLine");
+      if (!flowEl || !pronEl || !meanEl) return;
+
+      const cleanedAr = (arabicRaw || "")
+        .replace(/[ۖۗۘۙۚۛۜ۞۩۝]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+      const arWords = cleanedAr ? cleanedAr.split(" ") : [];
+
+      const cleanedPron = (pronunciationText || "")
+        .replace(/[।.]/g, "")
+        .trim();
+      const bnWords = cleanedPron ? cleanedPron.split(/\s+/) : [];
+
+      currentSyncWordCount = arWords.length;
+      lastHighlightedWordIdx = -1;
+
+      flowEl.innerHTML = arWords.map((w, idx) => {
+        const bnPart = bnWords[idx] || (bnWords.length ? bnWords[Math.min(idx, bnWords.length - 1)] : "");
+        return `
+          <div class="sync-word-chip" data-word-idx="${idx}">
+            <span class="sync-word-ar">${formatArabicWithHighlight(w)}</span>
+            <span class="sync-word-bn">${bnPart}</span>
+          </div>
+        `;
+      }).join("");
+
+      pronEl.textContent = `উচ্চারণ: ${pronunciationText}`;
+      meanEl.textContent = `অর্থ: ${translationText}`;
+      document.getElementById("syncProgressPercent").textContent = "০%";
+      const trackWin = document.getElementById("syncTrackWindow");
+      if (trackWin) trackWin.scrollTop = 0;
+    }
+
+    function updateAudioWordSync() {
+      const stage = document.getElementById("liveSyncStage");
+      const pctLabel = document.getElementById("syncProgressPercent");
+      const trackWin = document.getElementById("syncTrackWindow");
+      const chips = document.querySelectorAll("#syncWordsFlow .sync-word-chip");
+      if (!chips.length) return;
+
+      const isPlaying = !audioEl.paused && !audioEl.ended;
+      if (stage) stage.classList.toggle("is-speaking", isPlaying);
+
+      if (!audioEl.duration || !isFinite(audioEl.duration)) return;
+      const ratio = Math.max(0, Math.min(0.9999, audioEl.currentTime / audioEl.duration));
+      const pct = Math.round(ratio * 100);
+      if (pctLabel) pctLabel.textContent = `${toBnNum(pct)}%`;
+
+      const activeIdx = Math.min(chips.length - 1, Math.floor(ratio * chips.length));
+      if (activeIdx !== lastHighlightedWordIdx) {
+        lastHighlightedWordIdx = activeIdx;
+        chips.forEach((chip, i) => {
+          chip.classList.toggle("active-word", i === activeIdx);
+        });
+
+        const activeChip = chips[activeIdx];
+        if (activeChip && trackWin) {
+          const chipTop = activeChip.offsetTop - trackWin.offsetTop;
+          const desiredScroll = Math.max(0, chipTop - trackWin.clientHeight * 0.28);
+          trackWin.scrollTo({ top: desiredScroll, behavior: "smooth" });
+        }
+
+        // Gently lift/scroll translation & pronunciation into view as recitation progresses
+        if (stage && isPlaying) {
+          const liftPx = Math.round(ratio * 6);
+          stage.style.transform = `translateY(-${liftPx}px)`;
+        }
+      }
+    }
+
     audioEl.addEventListener("timeupdate", () => {
+      updateAudioWordSync();
       const pct = audioEl.duration ? (audioEl.currentTime / audioEl.duration) * 100 : 0;
       document.getElementById("audioProgressFill").style.width = `${pct}%`;
       document.getElementById("audioTimeLabel").textContent =
         `${formatTimeSec(audioEl.currentTime)} / ${formatTimeSec(audioEl.duration)}`;
     });
 
-    audioEl.addEventListener("ended", () => {
+    audioEl.addEventListener("play", () => {
+      const stage = document.getElementById("liveSyncStage");
+      if (stage) stage.classList.add("is-speaking");
+    });
+    audioEl.addEventListener("pause", () => {
+      const stage = document.getElementById("liveSyncStage");
+      if (stage) {
+        stage.classList.remove("is-speaking");
+        stage.style.transform = "translateY(0)";
+      }
+    });
+
+        audioEl.addEventListener("ended", () => {
       if (state.settings.repeatAyah) {
         audioEl.currentTime = 0;
         audioEl.play().catch(() => updatePlayButtonIcon(false));
@@ -2537,7 +2796,7 @@
     async function renderCurrentPage(direction = null, autoPlayAudio = false) {
       const surahMeta = SURAHS[state.surah - 1];
       document.getElementById("headerSubtitleText").textContent =
-        `সূরাঃ ${surahMeta.bn}, আয়াতঃ ${toBnNum(state.ayah)}`;
+        `সূরাঃ ${surahMeta.bn} • আয়াতঃ ${toBnNum(state.ayah)}/${toBnNum(surahMeta.ayahs)}`;
 
       document.getElementById("quickSurahSelect").value = state.surah;
       populateAyahDropdown(surahMeta.ayahs, state.ayah);
@@ -2579,6 +2838,7 @@
         document.getElementById("fsArabicVerse").innerHTML = formattedArabicHTML;
         document.getElementById("fsBanglaText").textContent = data.translation;
         document.getElementById("pronunciationText").textContent = data.pronunciation;
+        buildSynchronizedVerseStage(data.arabic, data.pronunciation, data.translation);
         document.getElementById("translationText").textContent = data.translation;
         document.getElementById("tafsirText").textContent = data.tafsir;
         document.getElementById("hadithText").textContent = data.hadith.text;
@@ -2893,7 +3153,7 @@
     function populateSurahSelectors() {
       const quickSelect = document.getElementById("quickSurahSelect");
       quickSelect.innerHTML = SURAHS.map(s =>
-        `<option value="${s.n}">${toBnNum(s.n)}. ${s.bn} (${s.ar})</option>`
+        `<option value="${s.n}">${toBnNum(s.n)}. ${s.bn} (${toBnNum(s.ayahs)} আয়াত)</option>`
       ).join("");
       renderSurahList("");
     }
@@ -2949,7 +3209,7 @@
       const isSaved = state.bookmarks.includes(key);
       const btn = document.getElementById("bookmarkBtn");
       btn.classList.toggle("active", isSaved);
-      btn.textContent = isSaved ? "★ সংরক্ষিত" : "☆ বুকমার্ক";
+      btn.textContent = isSaved ? "★" : "☆";
       renderBookmarkList();
     }
 
