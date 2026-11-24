@@ -1078,10 +1078,17 @@
         });
 
         const activeChip = chips[activeIdx];
-        if (activeChip && trackWin) {
-          const chipTop = activeChip.offsetTop - trackWin.offsetTop;
-          const desiredScroll = Math.max(0, chipTop - trackWin.clientHeight * 0.25);
-          trackWin.scrollTo({ top: desiredScroll, behavior: "smooth" });
+        const fsBodyEl = document.getElementById("syncFsBody");
+        if (activeChip) {
+          if (isSyncFullscreenOpen && fsBodyEl) {
+            const chipRelTop = activeChip.getBoundingClientRect().top - fsBodyEl.getBoundingClientRect().top + fsBodyEl.scrollTop;
+            const desiredScroll = Math.max(0, chipRelTop - fsBodyEl.clientHeight * 0.25);
+            fsBodyEl.scrollTo({ top: desiredScroll, behavior: "smooth" });
+          } else if (trackWin) {
+            const chipTop = activeChip.offsetTop - trackWin.offsetTop;
+            const desiredScroll = Math.max(0, chipTop - trackWin.clientHeight * 0.25);
+            trackWin.scrollTo({ top: desiredScroll, behavior: "smooth" });
+          }
         }
 
         // Scroll pronunciation & translation text smoothly inside their containers as audio progresses
@@ -1390,17 +1397,22 @@
       if (!modal || !fsBody || !trackWin) return;
       isSyncFullscreenOpen = true;
       fsBody.appendChild(trackWin);
+      fsBody.scrollTop = 0;
+      trackWin.scrollTop = 0;
       syncFullscreenLabels();
       modal.classList.add("open");
     }
 
     function closeSyncFullscreen() {
       const modal = document.getElementById("syncFullscreenModal");
+      const fsBody = document.getElementById("syncFsBody");
       const liveStage = document.getElementById("liveSyncStage");
       const trackWin = document.getElementById("syncTrackWindow");
       if (!modal) return;
       isSyncFullscreenOpen = false;
       modal.classList.remove("open");
+      if (fsBody) fsBody.scrollTop = 0;
+      if (trackWin) trackWin.scrollTop = 0;
       if (liveStage && trackWin && trackWin.parentElement !== liveStage) {
         liveStage.appendChild(trackWin);
       }

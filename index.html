@@ -1392,7 +1392,7 @@
     }
 
   
-    /* Dedicated Fullscreen Modal for Live Sync Stage (Double-tap/click on Live Sync Stage) */
+        /* Dedicated Fullscreen Modal for Live Sync Stage (Double-tap/click on Live Sync Stage) */
     .sync-fullscreen-modal {
       position: fixed;
       inset: 0;
@@ -1404,7 +1404,7 @@
       display: none;
       flex-direction: column;
       justify-content: space-between;
-      padding: 10px 12px 12px;
+      padding: 8px 10px 10px;
       overflow: hidden;
     }
 
@@ -1417,8 +1417,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 8px 10px;
+      gap: 6px;
+      padding: 7px 9px;
       background-color: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
@@ -1426,53 +1426,85 @@
     }
 
     .sync-fs-title {
-      font-size: 13.5px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--accent-green);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-width: 0;
+      flex: 1;
     }
 
     .sync-fs-body {
       flex: 1 1 auto;
       min-height: 0;
-      margin: 10px 0;
+      margin: 8px 0;
       background-color: var(--bg-card);
       border: 2px solid var(--accent-green);
       border-radius: 16px;
-      padding: 18px 16px;
+      padding: 12px 10px 24px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
+      align-items: stretch;
       overflow-y: auto;
+      overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
     }
 
     .sync-fullscreen-modal .sync-track-window {
       max-height: none;
-      flex: 1;
+      flex: none;
+      display: block;
+      overflow: visible;
+      padding-right: 0;
+    }
+
+    .sync-fullscreen-modal .sync-words-flow {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       justify-content: center;
+      align-items: stretch;
+      gap: 10px 8px;
+      padding: 4px 2px 12px;
+    }
+
+    .sync-fullscreen-modal .sync-word-chip {
+      max-width: 100%;
+      min-width: 84px;
+      padding: 8px 10px;
+      overflow: visible;
     }
 
     .sync-fullscreen-modal .sync-word-ar {
-      font-size: calc(var(--arabic-size) * 0.88);
+      font-size: clamp(26px, calc(var(--arabic-size) * 0.62), 46px);
+      line-height: 1.85;
+      white-space: nowrap;
     }
 
     .sync-fullscreen-modal .sync-word-bn {
-      font-size: 16px;
+      font-size: 13.5px;
+      line-height: 1.35;
+      white-space: normal;
+      word-break: break-word;
+      text-align: center;
     }
 
     .sync-fullscreen-modal .sync-pron-line {
-      font-size: calc(var(--bangla-size) + 3px);
-      padding: 14px 16px;
+      font-size: calc(var(--bangla-size) + 1px);
+      line-height: 1.72;
+      padding: 12px 14px;
+      margin-top: 10px;
+      word-break: break-word;
     }
 
     .sync-fullscreen-modal .sync-meaning-line {
-      font-size: calc(var(--bangla-size) + 4px);
-      padding: 16px 18px;
+      font-size: calc(var(--bangla-size) + 2px);
+      line-height: 1.8;
+      padding: 14px 15px;
+      margin-top: 10px;
+      word-break: break-word;
     }
 
     .sync-fs-bottombar {
@@ -1480,7 +1512,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding: 8px 10px;
+      padding: 7px 9px;
       background-color: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
