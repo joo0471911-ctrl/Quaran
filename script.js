@@ -278,24 +278,11 @@
       }
     }
 
-    // Safe Service Worker registration only on HTTP/HTTPS (never throws on file:// or sandboxed preview)
+    // Real Service Worker (sw.js): অ্যাপ শেল, ফন্ট ও হিরো অফলাইনে ক্যাশ করে
     if ("serviceWorker" in navigator && (window.location.protocol === "https:" || window.location.protocol === "http:")) {
-      try {
-        const swCode = `
-          const CACHE_NAME = 'ahsanul-bayan-shell-v1';
-          self.addEventListener('install', (e) => { self.skipWaiting(); });
-          self.addEventListener('activate', (e) => { e.waitUntil(self.clients.claim()); });
-          self.addEventListener('fetch', (e) => {
-            if (e.request.method !== 'GET') return;
-            e.respondWith(
-              caches.match(e.request).then((cached) => cached || fetch(e.request).catch(() => cached))
-            );
-          });
-        `;
-        const blob = new Blob([swCode], { type: "application/javascript" });
-        const swUrl = URL.createObjectURL(blob);
-        navigator.serviceWorker.register(swUrl).catch(() => {});
-      } catch (e) {}
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
     }
 
     // App State

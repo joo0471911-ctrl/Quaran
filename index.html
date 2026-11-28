@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="theme-color" content="#0a0d0b" />
-  <title>আহসানুল বায়ান — আল-কুরআন, বাংলা অনুবাদ, তাফসীর, হাদীস ও অডিও</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <title>কোরআন — আল-কুরআন, বাংলা অনুবাদ, তাফসীর, হাদীস ও অডিও</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600;700&family=Lateef:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&family=Reem+Kufi:wght@500;700&family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -491,9 +493,6 @@
       font-weight: 700;
     }
 
-              লাইভ সিঙ্ক: আরবি + উচ্চারণ + অর্থ
-            </span>
-            <span id="syncProgressPercent" style="color:var(--text-muted); font-weight:700;">০%</span>
 
     /* Bangla Pronunciation Band */
     .pronunciation-band {
@@ -1173,6 +1172,7 @@
     }
   
     /* Focus Reading Mode: Hides Top Header, Quick Nav Bar, and Bottom Audio/Nav Dock */
+    body.focus-reading-mode #project-hub-hero,
     body.focus-reading-mode .top-bar,
     body.focus-reading-mode .quick-nav,
     body.focus-reading-mode .bottom-dock {
@@ -1533,7 +1533,7 @@
       </button>
 
       <button class="header-title-btn" id="headerTitleBtn" title="সূরা পরিবর্তন করুন">
-        <div class="header-main-title">আহসানুল বায়ান</div>
+        <div class="header-main-title">কোরআন</div>
         <div class="header-sub-title">
           <span id="headerSubtitleText">সূরাঃ আল-ফাতিহা, আয়াতঃ ১</span>
           <span class="offline-pill" id="networkStatusBadge">● অনলাইন ও অফলাইন প্রস্তুত</span>
@@ -1554,6 +1554,9 @@
         </svg>
       </button>
     </header>
+
+    <!-- প্রজেক্ট হাব হিরো (ড্রপডাউন) — হেডারের ঠিক নিচে -->
+    <div id="project-hub-hero"></div>
 
     <!-- Quick Surah & Ayah Selector -->
     <div class="quick-nav">
@@ -1852,6 +1855,7 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="hub-hero.js"></script>
   <script>
     window.addEventListener("error", function(ev) {
       var banner = document.getElementById("statusToast");
